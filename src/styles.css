@@ -1,0 +1,99 @@
+/* styles.css */
+/* Resetting padding, margin, and font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+:root {
+    --background-color: #eee;
+    --border-color: #ddd;
+}
+
+/* html, body {
+    width: 100%;
+    height: 100%;
+} */
+
+body .container {
+    background-color: var(--background-color);
+    display: grid;
+    grid-template-areas: 
+        "h h h"
+        "n m m";
+    grid-template-rows: 72px 1fr;
+    grid-template-columns: 180px 1fr 1fr;
+    height: 100vh;
+}
+
+header {
+    grid-area: h;
+    background-color: var(--background-color);
+    align-content: center;
+    padding: 16px;
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    flex-grow: 1;
+    align-content: center;
+}
+
+header button {
+    padding: 8px 16px;
+}
+
+nav {
+    grid-area: n;
+    background-color: var(--background-color);
+    border-right: 1px solid var(--border-color);
+    padding-top: 16px;
+    padding-left: 16px; 
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul li, main ul li {
+    list-style: none;
+    padding: 8px 0px;
+}
+
+nav .active {
+    font-weight: bold;
+}
+
+main {
+    grid-area: m;
+    background-color: var(--background-color);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.task-item {
+    background-color: #fff;
+    padding: 16px 16px 12px;
+    line-height: 1.6rem;
+}
+
+.task-item h1 {
+    font-size: 1.2rem;
+}
+
+.task-item p {
+    font-size: 1rem;
+}
+
+.meta {
+    display: flex;
+    gap: 12px;
+    color: #999;
+}
+
+.meta p {
+    font-size: .8rem;
+}
