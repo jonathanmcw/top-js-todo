@@ -12,38 +12,34 @@
     --border-color: #ddd;
 }
 
-/* html, body {
-    width: 100%;
-    height: 100%;
-} */
-
 body .container {
     background-color: var(--background-color);
     display: grid;
     grid-template-areas: 
         "h h h"
         "n m m";
-    grid-template-rows: 72px 1fr;
+    grid-template-rows: 24px 1fr;
     grid-template-columns: 180px 1fr 1fr;
     height: 100vh;
 }
 
 header {
     grid-area: h;
-    background-color: var(--background-color);
+    background-color: #111;
+    /* background-color: var(--background-color); */
+    text-align: center;
     align-content: center;
-    padding: 16px;
+    /* padding-left: 16px; */
+    color: #fff;
     display: flex;
     border-bottom: 1px solid var(--border-color);
+
+    font-size: 0.8rem;
 }
 
-header h1 {
+header p {
     flex-grow: 1;
     align-content: center;
-}
-
-header button {
-    padding: 8px 16px;
 }
 
 nav {
@@ -65,6 +61,14 @@ nav .active {
     font-weight: bold;
 }
 
+nav #new-project-button {
+    cursor: pointer;
+}
+
+nav #new-project-button:hover {
+    font-weight: bold;
+}
+
 main {
     grid-area: m;
     background-color: var(--background-color);
@@ -74,10 +78,33 @@ main {
     gap: 16px;
 }
 
+main .header {
+    display: flex;
+}
+
+main .header > div:first-child {
+    flex-grow: 1;
+}
+
+main .header div h1, main .header div p {
+    display: inline;
+    margin-right: 16px;
+}
+
+main .header > div button {
+    padding: 8px 16px;
+}
+
+.project {
+    cursor: pointer; 
+}
+
 .task-item {
     background-color: #fff;
     padding: 16px 16px 12px;
     line-height: 1.6rem;
+    margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .task-item h1 {
@@ -96,4 +123,93 @@ main {
 
 .meta p {
     font-size: .8rem;
+}
+
+.dialog-header {
+    display: flex;
+    padding-bottom: 16px;
+}
+
+.dialog-header h1 {
+    flex: 2;
+} 
+
+.dialog-header .close-dialog {
+    /* flex: 0.5; */
+    padding: 8px 16px;
+}
+
+dialog {
+    float: left;
+    padding: 16px;
+    width: 480px;
+}
+
+dialog form {
+    display: flex;
+    flex-direction: column;
+    align-content: start;
+    gap: 8px;
+}
+
+dialog {
+    float: left;
+    padding: 16px;
+    z-index: 1000; /* Ensure the dialog is on top */
+    position: fixed; /* Position the dialog fixed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    backdrop-filter: blur(5px); /* Blur the background */
+    border-radius: 8px; /* Optional: Add some border radius for better appearance */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better appearance */
+}
+
+input[type=text], input[type=date], textarea {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.next {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.next button {
+    padding: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12pt;
+}
+
+.next button#confirm-task-button {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.next button#delete-task-button {
+    /* border: 1px solid darkred; */
+    border: none;
+    background-color: none;
+    color: crimson;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Darken the background */
+    backdrop-filter: blur(5px); /* Blur the background */
+    z-index: 999; /* Ensure it is below the dialog but above other content */
+    display: none; /* Initially hidden */
+}
+
+body.dialog-open::before {
+    display: block; /* Show the backdrop when dialog is open */
 }
